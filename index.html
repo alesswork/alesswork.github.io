@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raesecom | Mini apps for e-commerce sellers, built with Claude</title>
+<meta name="description" content="Raesecom LLC builds small tools for e-commerce sellers and paid-media teams, written with Claude Code. First product: Winner Vault, a product-intelligence database.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://raesecom.com/">
+<meta name="theme-color" content="#1C3D32">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://raesecom.com/">
+<meta property="og:site_name" content="Raesecom">
+<meta property="og:title" content="Raesecom | Mini apps for e-commerce sellers, built with Claude">
+<meta property="og:description" content="Small tools for e-commerce sellers and paid-media teams, written with Claude Code. First product: Winner Vault, a product-intelligence database.">
+<meta property="og:image" content="https://raesecom.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Raesecom",
+  "legalName": "Raesecom LLC",
+  "url": "https://raesecom.com/",
+  "email": "alessandro@raesecom.com",
+  "foundingDate": "2025",
+  "description": "Raesecom LLC builds small tools for e-commerce sellers and paid-media teams, written with Claude Code. First product: Winner Vault, a product-intelligence database.",
+  "founder": { "@type": "Person", "name": "Alessandro Espinosa" },
+  "address": { "@type": "PostalAddress", "addressRegion": "WY", "addressCountry": "US" }
+}
+</script>
+<style>
+  @font-face {
+    font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap;
+    src: url("/fonts/bricolage-grotesque.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap;
+    src: url("/fonts/newsreader.woff2") format("woff2");
+  }
+  :root {
+    --paper: #EEF1EA;
+    --sheet: #FBFCF9;
+    --ink: #15231D;
+    --vault: #1C3D32;
+    --muted: #4F6058;
+    --line: #C5CFC4;
+    --verified: #1B6A45;
+    --verified-bg: #DCEDE1;
+    --inferred: #855600;
+    --inferred-bg: #F6E9C6;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --text: "Newsreader", Georgia, "Times New Roman", serif;
+    --gutter: clamp(16px, 4vw, 40px);
+    --rail: 13rem;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--text);
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--vault); outline-offset: 3px; border-radius: 2px; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+  h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -0.02em; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: var(--gutter); }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--vault); color: var(--paper); padding: 0.6rem 1rem;
+    font-family: var(--display); font-weight: 700; text-decoration: none;
+  }
+  .skip:focus { left: var(--gutter); top: 0.5rem; z-index: 10; }
+
+  /* Header */
+  .top { border-bottom: 1px solid var(--line); }
+  .top .wrap {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: 0.5rem 2rem;
+    padding-block: 1.1rem;
+  }
+  .wordmark {
+    font-family: var(--display); font-weight: 800; font-size: 1.5rem;
+    letter-spacing: -0.03em; text-decoration: none; color: var(--vault);
+  }
+  .top nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+  .top nav a {
+    font-family: var(--display); font-weight: 500; font-size: 1rem;
+    text-decoration: none; padding-block: 0.25rem;
+  }
+  .top nav a:hover { text-decoration: underline; }
+
+  /* Hero */
+  .hero .wrap {
+    display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(1.75rem, 4vw, 3rem) clamp(2rem, 5vw, 4.5rem); align-items: end;
+    padding-block: clamp(2.5rem, 7vw, 5rem);
+  }
+  .hero h1 {
+    font-weight: 800;
+    font-size: clamp(2.6rem, 6.4vw, 4.75rem);
+    line-height: 0.98; letter-spacing: -0.035em;
+    color: var(--vault);
+    max-width: 12ch;
+  }
+  .hero .lede { font-size: 1.3125rem; line-height: 1.5; max-width: 34ch; margin: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+  .btn {
+    display: inline-block; font-family: var(--display); font-weight: 700; font-size: 1.0625rem;
+    text-decoration: none; padding: 0.8rem 1.25rem; border-radius: 6px;
+    border: 2px solid var(--vault);
+  }
+  .btn-solid { background: var(--vault); color: var(--paper); }
+  .btn-solid:hover { background: var(--ink); border-color: var(--ink); }
+  .btn-line { color: var(--vault); }
+  .btn-line:hover { background: var(--vault); color: var(--paper); }
+  .hero .status { margin: 1.25rem 0 0; font-size: 1rem; color: var(--muted); }
+  .hero .shot { grid-column: 1 / -1; }
+
+  /* Screenshots of the real app, framed like a file from the vault */
+  .shot {
+    margin: 0; background: var(--sheet); border: 1px solid var(--line); border-radius: 10px;
+    box-shadow: 0 1px 0 var(--line), 0 18px 40px -24px rgba(21, 35, 29, 0.45);
+    overflow: hidden;
+  }
+  .shot figcaption {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.15rem 1rem;
+    padding: 0.8rem 1.25rem; background: var(--vault); color: var(--paper);
+  }
+  .shot figcaption strong { font-family: var(--display); font-weight: 700; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .shot figcaption span { font-size: 0.9375rem; opacity: 0.85; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot-file { max-width: 44rem; margin-block: 1.75rem 0.75rem; }
+  .shot-note { font-size: 1rem; color: var(--muted); max-width: 44rem; margin-bottom: 1.5rem; }
+
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  .split .facts { margin-bottom: 0; }
+
+  .tag {
+    font-family: var(--display); font-weight: 700; font-size: 0.8125rem;
+    padding: 0.15rem 0.6rem; border-radius: 999px; white-space: nowrap;
+  }
+  .tag-verified { color: var(--verified); background: var(--verified-bg); border: 1.5px solid var(--verified); }
+  .tag-inferred { color: var(--inferred); background: var(--inferred-bg); border: 1.5px dashed var(--inferred); }
+
+  /* Sections: heading in a left rail, content on the right */
+  .band { border-top: 1px solid var(--line); }
+  .band .wrap {
+    display: grid; grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 1.5rem clamp(1.5rem, 4vw, 3.5rem);
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .band h2 {
+    font-weight: 700; font-size: 1.75rem; line-height: 1.1; color: var(--vault);
+  }
+  .band .body > :last-child { margin-bottom: 0; }
+
+  .facts { margin: 1.75rem 0 0; display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); max-width: 44rem; }
+  .facts dt, .facts dd { padding: 0.7rem 0; border-top: 1px solid var(--line); margin: 0; }
+  .facts dt { font-family: var(--display); font-weight: 500; font-size: 1rem; color: var(--muted); padding-right: 1rem; }
+  .facts dd { font-size: 1.125rem; }
+  .facts dt:last-of-type, .facts dd:last-of-type { border-bottom: 1px solid var(--line); }
+
+  .steps { list-style: none; counter-reset: step; margin: 1.5rem 0 1.5rem; padding: 0; max-width: 44rem; }
+  .steps li {
+    counter-increment: step; display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); gap: 0 0.5rem;
+    padding: 0.9rem 0; border-top: 1px solid var(--line);
+  }
+  .steps li:last-child { border-bottom: 1px solid var(--line); }
+  .steps li::before {
+    content: counter(step); font-family: var(--display); font-weight: 800; font-size: 1.5rem;
+    line-height: 1.2; color: var(--vault);
+  }
+  .steps h3 { font-weight: 700; font-size: 1.1875rem; letter-spacing: -0.01em; line-height: 1.3; }
+  .steps p { margin: 0.15rem 0 0; font-size: 1.0625rem; color: var(--muted); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 0 0 1rem; padding: 0; list-style: none; font-size: 1.0625rem; }
+  .legend .tag { margin-right: 0.4rem; }
+
+  .three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .three h3 { font-weight: 700; font-size: 1.25rem; padding-top: 0.9rem; border-top: 3px solid var(--vault); margin-bottom: 0.5rem; }
+  .three p { font-size: 1.0625rem; margin: 0; }
+
+  .mail {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.03em;
+    font-size: clamp(1.5rem, 4.6vw, 2.75rem); color: var(--vault);
+    overflow-wrap: anywhere;
+  }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 1.75rem; font-size: 1rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.25rem 2rem; justify-content: space-between; }
+  footer p { margin: 0; max-width: none; }
+
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); align-items: start; }
+    .hero h1 { max-width: 14ch; }
+    .hero .lede { max-width: 40ch; }
+    .band .wrap { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .three { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  }
+  @media (max-width: 640px) {
+    .split { grid-template-columns: minmax(0, 1fr); }
+    .shot-phone { max-width: 17rem; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 1.125rem; }
+    .shot figcaption { padding: 0.7rem 1rem; }
+    .facts { grid-template-columns: minmax(0, 1fr); }
+    .facts dt { padding-bottom: 0; }
+    .facts dd { border-top: 0; padding-top: 0.1rem; }
+    .facts dt:last-of-type { border-bottom: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="#top" id="top">Raesecom</a>
+    <nav aria-label="Sections">
+      <a href="#vault">Winner Vault</a>
+      <a href="#scan">How the scan works</a>
+      <a href="#claude">Claude</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Mini apps for sellers who are already selling.</h1>
+      <div>
+        <p class="lede">Raesecom builds product-research tools, product files, and paid-media workflows. We write them with Claude and start with a job a team repeats every day, not a giant dashboard.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="#vault">See Winner Vault</a>
+          <a class="btn btn-line" href="mailto:alessandro@raesecom.com">Email Alessandro</a>
+        </div>
+        <p class="status">First product in internal use: Winner Vault.</p>
+      </div>
+
+      <figure class="shot">
+        <figcaption>
+          <strong>Winner Vault: product gallery</strong>
+          <span>Screenshot of the app. Sample products, Spanish interface.</span>
+        </figcaption>
+        <img src="/img/winner-vault-gallery.webp"
+             srcset="/img/winner-vault-gallery-1040.webp 1040w, /img/winner-vault-gallery.webp 2080w"
+             sizes="(max-width: 1120px) 92vw, 1040px"
+             width="2080" height="964" fetchpriority="high"
+             alt="Winner Vault product gallery. A sidebar lists Products, Compare, Favorites, Business, Import, and Backup. The main area shows a search bar, filters by type and category, and product cards with a photo, category, name, and source store.">
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="vault">
+    <div class="wrap">
+      <h2>Winner Vault</h2>
+      <div class="body">
+        <div class="split">
+          <div>
+            <p>A product-intelligence database for e-commerce sellers and media buyers. For each product you store the name, URL, photos, avatar, pains, angles, and hooks, with your notes and references next to them.</p>
+            <p>A light scan drafts the first file for you and labels every line as verified or inferred, so nobody on the team mistakes a guess for a fact.</p>
+            <dl class="facts">
+              <dt>Built for</dt><dd>E-commerce sellers and media buyers, especially small dropshipping and paid-media teams</dd>
+              <dt>Stores</dt><dd>Products, references, notes, and scores</dd>
+              <dt>Never invents</dt><dd>ROAS, sales, or ad spend</dd>
+              <dt>Status</dt><dd>In use by our team. Not for sale yet.</dd>
+            </dl>
+          </div>
+          <figure class="shot shot-phone">
+            <figcaption><strong>On a phone</strong></figcaption>
+            <img src="/img/winner-vault-mobile.webp" width="600" height="1123" loading="lazy" decoding="async"
+                 alt="Winner Vault on a phone: the same product gallery in two columns, with search, filters, and product cards.">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="scan">
+    <div class="wrap">
+      <h2>How the scan works</h2>
+      <div class="body">
+        <p>When a seller pastes a product link, the Winner Vault reader fetches the page and keeps only what the page itself shows.</p>
+        <ol class="steps">
+          <li><div><h3>The seller pastes a product link</h3><p>The reader recognises stores such as Amazon, AliExpress, and Shopify.</p></div></li>
+          <li><div><h3>The reader extracts what the page shows</h3><p>Title, description, photos, rating, review count, and declared sales. Each field keeps its source. It does not read prices.</p></div></li>
+          <li><div><h3>Winner Vault drafts the first file</h3><p>Avatar, pains, angles, and hooks, written as a starting point.</p></div></li>
+          <li><div><h3>Every line gets a label</h3><p>The seller sees what to check before spending on ads.</p></div></li>
+        </ol>
+        <figure class="shot shot-file">
+          <figcaption>
+            <strong>Winner Vault: one product file</strong>
+            <span>Screenshot of the app. Sample product.</span>
+          </figcaption>
+          <img src="/img/winner-vault-product-file.webp"
+               srcset="/img/winner-vault-product-file-780.webp 780w, /img/winner-vault-product-file.webp 1560w"
+               sizes="(max-width: 860px) 92vw, 704px"
+               width="1560" height="1372" loading="lazy" decoding="async"
+               alt="A Winner Vault product file for a levitating moon lamp. It shows the product name, category, source store, discovery date, a Re-scan button, the saved photo, and an Avatars block with a main avatar and a secondary avatar.">
+        </figure>
+        <p class="shot-note">In this file the Avatars block carries the note &ldquo;Inferido de &laquo;Iluminaci&oacute;n&raquo;&rdquo;, Spanish for &ldquo;inferred from Lighting&rdquo;: the draft came from the product category, not from the page.</p>
+        <ul class="legend" aria-label="Labels">
+          <li><span class="tag tag-verified">Verified</span>Read from the page or saved by the seller.</li>
+          <li><span class="tag tag-inferred">Inferred</span>Drafted by Winner Vault. Check before you rely on it.</li>
+        </ul>
+        <p>If a store blocks the reader, Winner Vault says so. It does not use proxies and it does not guess.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="claude">
+    <div class="wrap">
+      <h2>Where Claude fits</h2>
+      <div class="body">
+        <dl class="facts" style="margin-top:0">
+          <dt>Today</dt><dd>We write Winner Vault with Claude Code: the app and its cloud reader.</dd>
+          <dt>Next</dt><dd>Connect the scan to the Claude API, so Claude drafts the avatar, pains, angles, and hooks from what the reader found. Every drafted line will carry the Inferred label.</dd>
+          <dt>Status</dt><dd>The Claude API step is not live yet.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="work">
+    <div class="wrap">
+      <h2>What we build</h2>
+      <div class="body three">
+        <div>
+          <h3>E-commerce mini apps</h3>
+          <p>Small tools sellers open every day: product files, winner tracking, notes, and references in one place.</p>
+        </div>
+        <div>
+          <h3>Product research</h3>
+          <p>Systems that check what is selling, compare sources, and leave a usable brief instead of a lost chat.</p>
+        </div>
+        <div>
+          <h3>Paid media</h3>
+          <p>Copy, angles, landing pages, and reports for teams running Meta ads who need evidence before they scale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="studio">
+    <div class="wrap">
+      <h2>The studio</h2>
+      <div class="body">
+        <p>Raesecom is an early studio. Alessandro Espinosa founded it to turn e-commerce and paid-media work into products: small apps a seller can use the next day.</p>
+        <ol class="steps">
+          <li><div><h3>Pick a job the seller repeats</h3></div></li>
+          <li><div><h3>Turn it into one concrete app</h3></div></li>
+          <li><div><h3>Use it ourselves before we offer it</h3></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="company">
+    <div class="wrap">
+      <h2>Company</h2>
+      <div class="body">
+        <dl class="facts" style="margin-top:0">
+          <dt>Legal name</dt><dd>Raesecom LLC</dd>
+          <dt>Registered in</dt><dd>Wyoming, United States</dd>
+          <dt>Founded</dt><dd>2025</dd>
+          <dt>Founder</dt><dd>Alessandro Espinosa</dd>
+          <dt>Team</dt><dd>Building from Argentina</dd>
+          <dt>Contact</dt><dd><a href="mailto:alessandro@raesecom.com">alessandro@raesecom.com</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <div class="body">
+        <p>If you sell online or run ads and need a tool built for that job, write to us.</p>
+        <p><a class="mail" href="mailto:alessandro@raesecom.com">alessandro@raesecom.com</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Raesecom LLC. Wyoming, United States.</p>
+    <p><a href="mailto:alessandro@raesecom.com">alessandro@raesecom.com</a></p>
+  </div>
+</footer>
+</body>
+</html>
